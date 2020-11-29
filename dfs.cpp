@@ -39,7 +39,7 @@ void DFSVisit(Graph g, int u, int& time, std::vector<Colors>& color, std::vector
 		else if (color[v] == Colors::GREY)
 		{
 			//BackEdge
-			std::cout << "Backedge from " << u << " to " << v << std::endl;
+			std::cout << "Backedge from " << u + 1 << " to " << v + 1 << std::endl;
 		}
 	}
 	f[u] = ++time;
