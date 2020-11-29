@@ -22,7 +22,21 @@ class Graph
 	{
 		--src;
 		--dest;
-		adj[src].push_back(dest);
+		auto it = adj[src].begin();
+		while (it != adj[src].end() && *it < dest)
+			++it;
+		// adj[src].push_back(dest);
+		adj[src].insert(it, dest);
+	}
+	void print()
+	{
+		for (int i = 0; i < size; ++i)
+		{
+			std::cout << i + 1 << " --> ";
+			for (auto it = adj[i].begin(); it != adj[i].end(); ++it)
+				std::cout << *it + 1 << "\t";
+			std::cout << std::endl;
+		}
 	}
 };
 void DFSVisit(Graph g, int u, int& time, std::vector<Colors>& color, std::vector<int>& pi, std::vector<int>& d,std::vector<int>& f)
@@ -83,14 +97,15 @@ void dfs(Graph g)
 int main()
 {
 	Graph g(6);
-	g.addEdge(1,2);
 	g.addEdge(1,3);
+	g.addEdge(1,2);
 	g.addEdge(2,3);
 	g.addEdge(2,6);
 	g.addEdge(3,4);
-	g.addEdge(4,1);
 	g.addEdge(4,5);
+	g.addEdge(4,1);
 	g.addEdge(5,2);
 	g.addEdge(5,6);
+	g.print();
 	dfs(g);
 }
