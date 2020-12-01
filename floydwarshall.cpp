@@ -6,9 +6,10 @@
 #define V 4
 #define INF 9999
 
-int FloydMarshall(int A[][V])
+int FloydMarshall(std::vector<std::vector<int>> A)
+// int FloydMarshall(int A[][V])
 {
-	int n = V;
+	int n = A.size();
 	std::vector<std::vector<int>> D(V,std::vector<int>(V));
 	std::vector<std::vector<int>> pi(V,std::vector<int>(V));
 	for (int i = 0; i < n; ++i)
@@ -45,9 +46,9 @@ int FloydMarshall(int A[][V])
 			for (int j = 0; j < n; ++j)
 			{
 				if (D[i][j] != INF)
-					std::cout << "D" << k + 1 << "[" << i << "," << j << "]=" << D[i][j] << "\t";
+					std::cout << "D" << k + 1 << "[" << i + 1 << "," << j + 1<< "]=" << D[i][j] << "\t";
 				else 
-					std::cout << "D" << k + 1 << "[" << i << "," << j << "]=INF\t";
+					std::cout << "D" << k + 1 << "[" << i + 1<< "," << j + 1<< "]=INF\t";
 			}
 			std::cout << std::endl;
 		}
@@ -56,7 +57,7 @@ int FloydMarshall(int A[][V])
 		{
 			for (int j = 0; j < n; ++j)
 			{
-					std::cout << "Pi" << k + 1 << "[" << i << "," << j << "]=" << pi[i][j] << "\t";
+					std::cout << "Pi" << k + 1 << "[" << i + 1 << "," << j + 1<< "]=" << pi[i][j] + 1<< "\t";
 			}
 			std::cout << std::endl;
 		}
@@ -69,9 +70,9 @@ int FloydMarshall(int A[][V])
 			for (int j = 0; j < n; ++j)
 			{
 				if (D[i][j] != INF)
-					std::cout << "D" << "[" << i << "," << j << "]=" << D[i][j] << "\t";
+					std::cout << "D" << "[" << i + 1 << "," << j +1<< "]=" << D[i][j] << "\t";
 				else 
-					std::cout << "D" << "[" << i << "," << j << "]=INF\t";
+					std::cout << "D" << "[" << i +1 << "," << j +1<< "]=INF\t";
 			}
 			std::cout << std::endl;
 		}
@@ -80,7 +81,7 @@ int FloydMarshall(int A[][V])
 		{
 			for (int j = 0; j < n; ++j)
 			{
-					std::cout << "Pi" << "[" << i << "," << j << "]=" << pi[i][j] << "\t";
+					std::cout << "Pi" << "[" << i + 1<< "," << j + 1<< "]=" << pi[i][j] + 1 << "\t";
 			}
 			std::cout << std::endl;
 		}
@@ -91,14 +92,14 @@ int FloydMarshall(int A[][V])
   
 
 int main()
-{
-    int graph[4][4] = { {0, 2, INF, 5},  
-                        {INF, 0, 1, INF},  
-                        {3, INF, 0, 1},  
-                        {INF, 2, INF, 0}  
-                    };  
+{										//   a  b   c   d
+    std::vector<std::vector<int>> graph = { {0, 2, INF, 5},  //a
+											{INF, 0, 1, INF},   //b
+											{3, INF, 0, 1},  //c
+											{INF, 2, INF, 0}  //d
+											};  
 	
     // Print the solution  
     int res = FloydMarshall(graph);  
-	std::cout << res << std::endl;
+	// std::cout << res << std::endl;
 }
